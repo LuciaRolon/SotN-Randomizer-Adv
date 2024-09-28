@@ -126,7 +126,7 @@
     "comment": "In second castle",
     "locks": [
       "Holy glasses + Soul of Bat",
-      "Holy glasses + Gravity Boots + Leap Stone",
+      "Holy glasses + Gravity Boots + Leap Stone + Soul of Wolf + Power of Wolf + Skill of Wolf",
       "Holy glasses + Form of Mist + Power of Mist"
     ]
   }, {
@@ -284,7 +284,7 @@
     "comment": "In second castle",
     "locks": [
       "Holy glasses + Soul of Bat",
-      "Holy glasses + Gravity Boots + Leap Stone",
+      "Holy glasses + Gravity Boots + Leap Stone + Soul of Wolf + Power of Wolf + Skill of Wolf",
       "Holy glasses + Form of Mist + Power of Mist"
     ]
   }, {
@@ -626,7 +626,6 @@
     "comment": "Requires Holy glasses + Mist + flight",
     "locks": [
       "Holy glasses + Form of Mist + Soul of Bat",
-      "Holy glasses + Form of Mist + Gravity Boots + Leap Stone +Soul of Wolf",
       "Holy glasses + Form of Mist + Power of Mist"
     ]
   }, {
@@ -778,7 +777,6 @@
     "locks": [
       "Holy glasses + Soul of Bat",
       "Holy glasses + Gravity Boots + Leap Stone + Spike Breaker + Soul of Wolf + Power of Wolf + Skill of Wolf",
-      "Holy glasses + Gravity Boots + Leap Stone + Spike Breaker + Form of Mist",
       "Holy glasses + Form of Mist + Power of Mist"
     ]
   }, {
