@@ -8,9 +8,7 @@ const Worker = require('worker_threads').Worker
 const constants = require('./src/constants')
 const errors = require('./src/errors')
 const extension = require('./src/extension')
-const presets = require('./build/presets')
 const randomizeStats = require('./src/randomize_stats')
-const randomizeRelics = require('./src/randomize_relics')
 const randomizeItems = require('./src/randomize_items')
 const randomizeMusic = require('./src/randomize_music')
 const applyAccessibilityPatches = require('./src/accessibility_patches')
@@ -407,39 +405,6 @@ const tournamentHelp = [
   '- The clock room statue is always open.',
 ].join('\n')
 
-const presetHelp = [
-  'Presets specify collection of randomization options. A preset is enabled',
-  'by using argument syntax.',
-  '',
-  'Preset format:',
-  '  p:<preset>',
-  '',
-  'This randomizer has several built-in presets:',
-].concat(presets.filter(function(preset) {
-  return !preset.hidden
-}).map(function(preset) {
-  return '  ' + preset.id + (preset.id === 'safe' ? ' (default)' : '')
-})).concat([
-  '',
-  'Use `--help <preset>` for information on a specific preset.',
-  '',
-  'Examples:',
-  '  p:safe        Use Safe preset',
-  '  p:empty-hand  Use Empty Hand preset',
-  '',
-  'When using the `$0` utility, you can use the `--preset` shorthand to',
-  'specify a preset:',
-  '  $0 -p speedrun  # Use speedrun preset',
-  '',
-  'Preset options may be overridden by specifying an options string:',
-  '  $0 -p adventure --opt d:*:Peanuts-  # Adventure with only Peanut drops',
-  '',
-  'A special negation syntax can be used in the options string to disable',
-  'randomizations that a preset would otherwise enable. To negate a',
-  'randomization, precede its letter with a tilde ("~"):',
-  '  $0 -p adventure --opt ~m  # Adventure but without music randomization',
-]).join('\n')
-
 function presetMetaHelp(preset) {
   const options = preset.options()
   let locations = relics.filter(function(relic) {
@@ -615,12 +580,6 @@ const yargs = require('yargs')
     describe: 'Prevents Death from stealing your belongings.',
     type: 'boolean',
   })
-  .option('mapcolor', {
-    alias: 'm',
-    describe: 'Change map color',
-    type: 'string',
-    requiresArg: true,
-  })
   .option('iws', {
     alias: 'b',
     describe: 'Makes wing smash essentially infinite.',
@@ -636,10 +595,37 @@ const yargs = require('yargs')
     describe: 'Quickens warp animation when using teleporters.',
     type: 'boolean',
   })
+  .option('unlocked', {
+    alias: 'U',
+    describe: 'Unlocks all shortcuts.',
+    type: 'boolean',
+  })
+  .option('surprise', {
+    alias: 'S',
+    describe: 'Hides relics behind the same sprite and palette forcing the player to collect the relic to find out what it is.',
+    type: 'boolean',
+  })
+  .option('enemyStatRando', {
+    alias: 'E',
+    describe: 'Enemy stats are randomized ranging from 25% to 200% of their original value and their attack and defense types are randomized to include random elements.',
+    type: 'boolean',
+  })
   .option('debug', {
     alias: 'D',
     describe: 'Debug mode.',
     type: 'boolean',
+  })
+  .option('mapcolor', {
+    alias: 'm',
+    describe: 'Change map color',
+    type: 'string',
+    requiresArg: true,
+  })
+  .option('excludesongs', {
+    alias: 'eds',
+    describe: 'Excludes the songs given by parameters. Example: --eds LOST_PAINTING,CURSE_ZONE',
+    type: 'string',
+    requiresArg: true,
   })
   .option('disable-accessibility-patches', {
     alias: 'a',
@@ -704,6 +690,39 @@ if ('help' in argv) {
     yargs.showHelp()
     process.exit()
   }
+  const presets = require('./build/presets')
+  const presetHelp = [
+    'Presets specify collection of randomization options. A preset is enabled',
+    'by using argument syntax.',
+    '',
+    'Preset format:',
+    '  p:<preset>',
+    '',
+    'This randomizer has several built-in presets:',
+  ].concat(presets.filter(function(preset) {
+    return !preset.hidden
+  }).map(function(preset) {
+    return '  ' + preset.id + (preset.id === 'safe' ? ' (default)' : '')
+  })).concat([
+    '',
+    'Use `--help <preset>` for information on a specific preset.',
+    '',
+    'Examples:',
+    '  p:safe        Use Safe preset',
+    '  p:empty-hand  Use Empty Hand preset',
+    '',
+    'When using the `$0` utility, you can use the `--preset` shorthand to',
+    'specify a preset:',
+    '  $0 -p speedrun  # Use speedrun preset',
+    '',
+    'Preset options may be overridden by specifying an options string:',
+    '  $0 -p adventure --opt d:*:Peanuts-  # Adventure with only Peanut drops',
+    '',
+    'A special negation syntax can be used in the options string to disable',
+    'randomizations that a preset would otherwise enable. To negate a',
+    'randomization, precede its letter with a tilde ("~"):',
+    '  $0 -p adventure --opt ~m  # Adventure but without music randomization',
+  ]).join('\n')
   const topics = {
     options: optionsHelp,
     drops: dropsHelp,
@@ -794,6 +813,7 @@ if ('preset' in argv) {
       options || {},
       util.optionsFromString('p:' + argv.preset)
     )
+    process.env.chosenPreset = argv.preset
   } catch (e) {
     yargs.showHelp()
     console.error('\n' + e.message)
@@ -995,18 +1015,6 @@ if ('debug' in argv) {console.log('randomize | Set my purse')}
 if (argv.mypurse) { // Adds MP Vessel to replace Heart Vessel - eldrich
   options.mypurseMode = true
 }
-if ('debug' in argv) {console.log('randomize | Set map colors')}
-// Map Color Features if specified. - eldri7ch
-if ('mapcolor' in argv && typeof(argv.mapcolor) !== 'undefined') {
-  let termsAllowed = 'u,r,b,g,y,p,k'
-  if (!(termsAllowed.includes(argv.mapcolor))) {
-    yargs.showHelp()
-    console.error('\nMust contain a letter \'u\'(Blue), \'r\'(Crimson), \'b\'(Brown), \'g\'(Green), \'y\'(Gray), \'p\'(Purple), \'k\'(Pink)')
-    process.exit(1)
-  } else {
-    options.mapcolorTheme = argv.mapcolor.toString()
-  }
-}
 if ('debug' in argv) {console.log('randomize | Set infinite wing smash')}
 // Enable infinite wing smash mode if specified. - eldri7ch
 if (argv.iws) { // Makes wing smashes essentially infinite - eldrich
@@ -1021,6 +1029,37 @@ if ('debug' in argv) {console.log('randomize | Set no prologue')}
 // Enable no prologue mode if specified. - eldri7ch
 if (argv.noprologue) { // Removes prologue - eldrich
   options.noprologueMode = true
+}
+if ('debug' in argv) {console.log('randomize | Set unlocked')}
+// Enable unlocked mode if specified. - eldri7ch
+if (argv.unlocked) { // opens shortcuts - eldrich
+  options.unlockedMode = true
+}
+if ('debug' in argv) {console.log('randomize | Set surprise')}
+// Enable surprise mode if specified. - eldri7ch
+if (argv.surprise) { // opens shortcuts - eldrich
+  options.surpriseMode = true
+}
+if ('debug' in argv) {console.log('randomize | Set enemyStatRando')}
+// Enable Enemy Stat Rando mode if specified. - eldri7ch
+if (argv.enemyStatRando) { // randomizes enemy stats - eldrich
+  options.enemyStatRandoMode = true
+}
+if ('debug' in argv) {console.log('randomize | Set map colors')}
+// Map Color Features if specified. - eldri7ch
+if ('mapcolor' in argv && typeof(argv.mapcolor) !== 'undefined') {
+  let termsAllowed = 'u,r,b,g,y,p,k,n,i'
+  if (!(termsAllowed.includes(argv.mapcolor))) {
+    yargs.showHelp()
+    console.error('\nMust contain a letter \'u\'(Blue), \'r\'(Crimson), \'n\'(Brown), \'g\'(Green), \'y\'(Gray), \'p\'(Purple), \'k\'(Pink), \'b\'(Black), \'i\'(Invisible)')
+    process.exit(1)
+  } else {
+    options.mapcolorTheme = argv.mapcolor.toString()
+  }
+}
+if ('excludesongs' in argv && typeof(argv.excludesongs) !== 'undefined') {
+  let songsToExclude = argv.excludesongs.split(",")
+  options.excludesongs = songsToExclude
 }
 if ('debug' in argv) {console.log('randomize | Set debug')}
 // Enable debug mode if specified. - eldri7ch
@@ -1068,8 +1107,11 @@ if ('debug' in argv) {console.log('randomize | Start randomization')}
     let checksum
     let startTime
     let endTime
+    let optFlag
 
     startTime = performance.now()
+    const presets = require('./build/presets')
+    const randomizeRelics = require('./src/randomize_relics')
 
     if (!argv.noSeed) {
       check = new util.checked(typeof(fd) === 'object' ? undefined : fd)
@@ -1167,47 +1209,89 @@ if ('debug' in argv) {console.log('randomize | Start randomization')}
         ))
         check.apply(randomizeMusic(rng, applied))
         if ('debug' in argv) {console.log('randomize | function: randomize | Apply patches from options')}
-        if ('debug' in argv) {console.log('randomize | function: randomize | Tournament Mode')}
+        optFlag = false
         if (options.tournamentMode) {
           // Apply tournament mode patches.
+          optFlag = true
           check.apply(util.applyTournamentModePatches())
         }
-        if ('debug' in argv) {console.log('randomize | function: randomize | Magicmax Mode')}
+        if ('debug' in argv) {console.log('randomize | function: randomize | Tournament Mode | ' + optFlag)}
+        optFlag = false
         if (options.magicmaxMode || applied.magicmaxMode) { // Adds MP Vessel to replace Heart Vessel - eldrich
           // Apply magic max mode patches. - MottZilla
+          optFlag = true
           check.apply(util.applyMagicMaxPatches())
         }
-        if ('debug' in argv) {console.log('randomize | function: randomize | Anti-Freeze Mode')}
+        if ('debug' in argv) {console.log('randomize | function: randomize | Magicmax Mode | ' + optFlag)}
+        optFlag = false
         if (options.antiFreezeMode || applied.antiFreezeMode) { // Removes screen freezes on relic / vessel collection and level-up - eldrich
           // Apply anti-freeze mode patches. - eldri7ch
+          optFlag = true
           check.apply(util.applyAntiFreezePatches())
         }
-        if ('debug' in argv) {console.log('randomize | function: randomize | That\'s my purse! Mode')}
+        if ('debug' in argv) {console.log('randomize | function: randomize | Anti-Freeze Mode | ' + optFlag)}
+        optFlag = false
         if (options.mypurseMode || applied.mypurseMode) { // Removes Death from Entrance - eldrich
           // Apply Death repellant patches. - eldri7ch
+          optFlag = true
           check.apply(util.applyMyPursePatches())
         }
-        if ('debug' in argv) {console.log('randomize | function: randomize | Map colors')}
+        if ('debug' in argv) {console.log('randomize | function: randomize | That\'s my purse! Mode | ' + optFlag)}
+        optFlag = false
+        if (options.iwsMode || applied.iwsMode) { // Makes wing smash essentially infinite - eldrich
+          // Apply infinite wing smashe mode patches. - eldri7ch
+          optFlag = true
+          check.apply(util.applyiwsPatches())
+        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | Infinite Wing Smash Mode | ' + optFlag)}
+        optFlag = false
+        if (options.fastwarpMode || applied.fastwarpMode) { // Quickens teleporter warp animations - eldrich
+          // Apply fast warp mode patches. - eldri7ch
+          optFlag = true
+          check.apply(util.applyfastwarpPatches())
+        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | Fast Warps Mode | ' + optFlag)}
+        optFlag = false
+        if (options.noprologueMode || applied.noprologueMode) { // removes prologue - eldrich
+          // Apply no prologue mode patches. - eldri7ch
+          optFlag = false
+          check.apply(util.applynoprologuePatches())
+        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | No Prologue Mode | ' + optFlag)}
+        optFlag = false
+        if (options.unlockedMode || applied.unlockedMode) { // Unlocks shortcuts - eldrich
+          // Apply unlocked mode patches. - eldri7ch
+          optFlag = true
+          check.apply(util.applyunlockedPatches())
+        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | Unlocked Mode | ' + optFlag)}
+        optFlag = false
+        if (options.surpriseMode || applied.surpriseMode) { // Hides relics behind the same sprite - eldrich
+          // Apply surprise mode patches. - eldri7ch
+          optFlag = true
+          check.apply(util.applysurprisePatches())
+        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | Surprise Mode | ' + optFlag)}
+        optFlag = false
+        if (options.enemyStatRandoMode || applied.enemyStatRandoMode) { // Randomizes enemy stats - eldrich
+          // Apply Enemy Stat Rando mode patches. - eldri7ch
+          optFlag = true
+          rng = new require('seedrandom')(util.saltSeed(
+            version,
+            options,
+            seed,
+            0,
+          ))
+          check.apply(util.applyenemyStatRandoPatches(rng))
+        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | Enemy Stat Randomizer Mode | ' + optFlag)}
+        optFlag = false
         if ('mapcolor' in argv) { // Colors the map - eldrich
           // Apply map color patches. - eldri7ch
           let mapcol = argv.mapcolor
           check.apply(util.applyMapColor(mapcol))
         }
-        if ('debug' in argv) {console.log('randomize | function: randomize | Infinite Wing Smash Mode')}
-        if (options.iwsMode || applied.iwsMode) { // Makes wing smash essentially infinite - eldrich
-          // Apply infinite wing smashe mode patches. - eldri7ch
-          check.apply(util.applyiwsPatches())
-        }
-        if ('debug' in argv) {console.log('randomize | function: randomize | Fast Warps Mode')}
-        if (options.fastwarpMode || applied.fastwarpMode) { // Quickens teleporter warp animations - eldrich
-          // Apply fast warp mode patches. - eldri7ch
-          check.apply(util.applyfastwarpPatches())
-        }
-        if ('debug' in argv) {console.log('randomize | function: randomize | No Prologue Mode')}
-        if (options.noprologueMode || applied.noprologueMode) { // removes prologue - eldrich
-          // Apply no prologue mode patches. - eldri7ch
-          check.apply(util.applynoprologuePatches())
-        }
+        if ('debug' in argv) {console.log('randomize | function: randomize | Map colors')}
         if ('debug' in argv) {console.log('randomize | function: randomize | Apply Writes')}
         // Apply writes.
         check.apply(util.applyWrites(rng, applied))

@@ -46,7 +46,7 @@
     "beyond",
     "breach",
     "grand-tour",
-    "crash-Course",
+    "crash-course",
     "forge",
     "lookingglass",
     "skinwalker",
@@ -54,7 +54,10 @@
     "agonizetwtw",
     "stwosafe",
     "open",
-    "brawler"
+    "brawler",
+    "first-castle",
+    "luckysevens",
+    "bingo"
   ],
   "engines": {
     "node": ">=15"

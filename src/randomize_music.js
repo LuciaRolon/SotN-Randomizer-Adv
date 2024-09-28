@@ -145,13 +145,23 @@
   function randomizeMusic(rng, options) {
     const data = new util.checked()
     if (options.music) {
-      let music
-      if (options.turkeyMode) {
-        music = Object.values(musicByArea)
-      } else {
-        music = Object.values(musicBySong)
+      let music = Object.values(musicByArea) // Removed the Music by Song option because no one wants that or even knows it exists.
+      // if (options.turkeyMode) {
+      //   music = Object.values(musicByArea)
+      // } else {
+      //   music = Object.values(musicBySong)
+      // }
+      let songSrc
+      if(options.excludesongs){
+        let musicArray = {...constants.MUSIC}
+        options.excludesongs.forEach(key => {
+          delete musicArray[key];
+        });
+        songSrc = Object.values(musicArray)
+      }else{
+        songSrc = Object.values(constants.MUSIC)
       }
-      const songSrc = Object.values(constants.MUSIC)
+      
       const songPool = songSrc.slice()
       while (songPool.length < music.length) {
         songPool.push(songSrc[Math.floor(rng() * songSrc.length)])

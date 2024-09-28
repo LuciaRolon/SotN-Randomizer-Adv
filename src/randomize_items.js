@@ -24,6 +24,7 @@
   const equipmentInvIdOffset = constants.equipmentInvIdOffset
   const GLOBAL_DROP = constants.GLOBAL_DROP
   const globalDropsCount = constants.globalDropsCount
+  const enemiesDrops = enemies.enemiesDrops
 
   const shuffled = util.shuffled
 
@@ -987,14 +988,14 @@
     const dupTypes = {}
     items.forEach(function(item) {
       if (equipmentFilter(item) && !salableFilter(item) && item.tiles) {
-        const enemies = item.tiles.filter(function(tile) {
+        const enemiesDrops = item.tiles.filter(function(tile) {
           return 'enemy' in tile && tile.enemy !== GLOBAL_DROP
         }).map(function(tile) {
           return tile.enemy
         })
-        if (enemies.length > 1) {
+        if (enemiesDrops.length > 1) {
           dupTypes[item.type] = dupTypes[item.type] || []
-          dupTypes[item.type].push(enemies.length - 1)
+          dupTypes[item.type].push(enemiesDrops.length - 1)
         }
       }
     })
@@ -1072,7 +1073,7 @@
           do {
             tile = takeTile(tiles, uniqueDrops(replacement))
             if (tile) {
-              enemy = enemies.filter(function(enemy) {
+              enemy = enemiesDrops.filter(function(enemy) {
                 return enemy.id === tile.enemy
               })
               tileCount++
@@ -1116,7 +1117,7 @@
           do {
             tile = takeTile(tiles, uniqueDrops(replacement))
             if (tile) {
-              enemy = enemies.filter(function(enemy) {
+              enemy = enemiesDrops.filter(function(enemy) {
                 return enemy.id === tile.enemy
               })
               tileCount++
@@ -1165,7 +1166,7 @@
           do {
             tile = takeTile(tiles, uniqueDrops(replacement))
             if (tile) {
-              enemy = enemies.filter(function(enemy) {
+              enemy = enemiesDrops.filter(function(enemy) {
                 return enemy.id === tile.enemy
               })
               tileCount++
@@ -1207,7 +1208,7 @@
           do {
             tile = takeTile(tiles, uniqueDrops(replacement))
             if (tile) {
-              enemy = enemies.filter(function(enemy) {
+              enemy = enemiesDrops.filter(function(enemy) {
                 return enemy.id === tile.enemy
               })
               tileCount++
@@ -1276,7 +1277,7 @@
         // Get enemies being targeted.
         let targets
         if (key === '*') {
-          targets = enemies.concat([{librarian: true}])
+          targets = enemiesDrops.concat([{librarian: true}])
         } else if (key === GLOBAL_DROP) {
           targets = [{id: GLOBAL_DROP}]
         } else if (key.toLowerCase() === 'librarian') {
@@ -1578,6 +1579,23 @@
       data.writeChar(targetAddress, selectionByte)
     }
   }
+
+  // Wing smash uses a palette pulled from the GPU.
+  // By default, this is palette #0x8102 (see EntityWingSmashTrail in decomp)
+  // Keep the 0x8100, but change the lower byte to pick a random palette.
+  // This write is to 8011e438 at runtime.
+  function randomizeWingSmashColor(data,rng) {
+    // Index 0 in most cluts is transparent. In some it is not. In these non-transparent cluts, we won't
+    // get a recolored wing smash outline and will instead get an ugly rectangle, since all the pixels
+    // that are supposed to be transparent won't be. These CLUTS were identified by python script as having
+    // a non-transparent index 0. If we get one of them, we will re-roll the palette.
+    const bad_cluts = [11, 12, 58, 59, 60, 61, 62, 63, 69, 70, 71, 73, 74, 75, 76, 77, 78, 79, 81, 82, 83, 84, 85, 86, 87]
+    var newPalette
+    do {
+      newPalette = Math.floor(rng() * 0x100)
+    } while (bad_cluts.includes(newPalette))
+    data.writeChar(0x13CAA0, newPalette)
+  }
   
   function randomizeItems(rng, items, newNames, options) {
     const data = new util.checked()
@@ -1705,6 +1723,8 @@
           randomizeCapeColors(data, rng)
           randomizeGravBootColors(data,rng)
           randomizeHydroStormColor(data, rng)
+          randomizeWingSmashColor(data,rng)
+
         }
         // Write items to ROM.
         if (options.itemLocations

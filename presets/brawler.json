@@ -2,13 +2,18 @@
   "metadata": {
     "id": "brawler",
     "name": "Brawler",
-    "description": "Intended as a challenge preset to get more accustom to the Fist type weapons, OnlyFists if you will.",
+    "description": "Intended as a challenge preset to get more accustomed to the Fist type weapons, most spells are removed.",
     "author": "Crazy4blades, Mottzilla", 
-    "weight": -5001
+    "weight": -2600
   },
 
   "relicLocationExtension": "Guarded",
   "stats": false,
+  "colorrandoMode": true,
+  "mypurseMode": true,
+  "fastwarpMode": true,
+  "surpriseMode": true,
+  
 
   "prologueRewards": [{
     "item": "Neutron bomb",
@@ -884,8 +889,7 @@
     "location": "Osafune katana",
     "comment": "Requires Holy glasses + flight",
     "locks": [
-      "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist"
+      "Holy glasses + Gravity Boots + Leap Stone"
     ]
   }, {
     "location": "Alucard shield",
@@ -1012,11 +1016,11 @@
       "Holy glasses + Form of Mist + Power of Mist"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist"
+      "Holy glasses + Gravity Boots + Leap Stone + Cube of Zoe",
+      "Holy glasses + Form of Mist + Power of Mist + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",
@@ -1396,7 +1400,7 @@
     "location": "Platinum mail",
     "comment": "Requires flight",
     "locks": [
-      "Gravity Boots",
+      "Gravity Boots + Leap Stone",
       "Form of Mist + Power of Mist"
     ]
   }, {
@@ -1526,7 +1530,6 @@
     "comment": "Requires Jewel of Open + flight",
     "locks": [
       "Jewel of Open + Leap Stone",
-      "Jewel of Open + Gravity Boots + Leap Stone",
       "Jewel of Open + Form of Mist + Power of Mist"
     ]
   }, {
@@ -1990,14 +1993,14 @@
       "Holy glasses + Gravity Boots + Thrust sword"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist",
-      "Holy glasses + Gravity Boots + Soul of Wolf",
-      "Holy glasses + Gravity Boots + Form of Mist",
-      "Holy glasses + Gravity Boots + Thrust sword"
+      "Holy glasses + Gravity Boots + Leap Stone + Cube of Zoe",
+      "Holy glasses + Form of Mist + Power of Mist + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Soul of Wolf + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Form of Mist + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Thrust sword + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",

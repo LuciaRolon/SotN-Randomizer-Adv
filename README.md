@@ -5,12 +5,12 @@ Symphony of the Night`.
 
 ## Browser
 
-https://sotnrando.net
+https://sotn.io
 
 ## CLI
 
 ```shell
-$ git clone https://github.com/eldri7ch/SotN-Randomizer-Adv
+$ git clone https://github.com/3snowp7im/SotN-Randomizer
 $ cd SotN-Randomizer
 $ npm install
 ```
@@ -87,7 +87,7 @@ To use a copied seed URL, paste in the URL as an argument. The `--race` option
 will be automatically enabled:
 
 ```shell
-$ node randomize -i rando.bin https://sotnrando.net/?myseed
+$ node randomize -i rando.bin https://sotn.io/?myseed
 ```
 
 The `--race` option has an inherent verbosity level of 2. You can override this
@@ -95,9 +95,9 @@ behavior by supplying your own `--verbose` flag(s):
 
 ```shell
 $ node randomize -vr -i rando.bin -s myseed                 # Less verbose
-$ node randomize -v -i rando.bin https://sotnrando.net/?myseed    # Less verbose
+$ node randomize -v -i rando.bin https://sotn.io/?myseed    # Less verbose
 $ node randomize -vvvr -i rando.bin -s myseed               # More verbose
-$ node randomize -vvv -i rando.bin https://sotnrando.net/?myseed  # More verbose
+$ node randomize -vvv -i rando.bin https://sotn.io/?myseed  # More verbose
 ```
 
 ### Dry running
@@ -108,7 +108,7 @@ To print starting equipment and relic locations for a URL without actually
 writing the randomizations to your disc image or PPF patch file:
 
 ```shell
-$ node randomize -vvv https://sotnrando.net/?myseed
+$ node randomize -vvv https://sotn.io/?myseed
 ```
 
 ### Presets

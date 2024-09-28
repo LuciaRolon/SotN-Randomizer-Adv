@@ -502,12 +502,7 @@
     "location": "Secret boots",
     "comment": "Requires Jewel of Open + flight",
     "locks": [
-      "Jewel of Open + Soul of Bat",
-      "Jewel of Open + Gravity Boots + Leap Stone",
-      "Jewel of Open + Form of Mist + Power of Mist",
-      "Jewel of Open + Gravity Boots + Soul of Wolf",
-      "Jewel of Open + Gravity Boots + Form of Mist",
-      "Jewel of Open + Gravity Boots + Thrust sword"
+      "Jewel of Open"
     ]
   }, {
     "location": "Holy mail",
@@ -874,7 +869,6 @@
     "locks": [
       "Holy glasses + Soul of Bat",
       "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist",
       "Holy glasses + Gravity Boots + Soul of Wolf",
       "Holy glasses + Gravity Boots + Form of Mist",
       "Holy glasses + Gravity Boots + Thrust sword"
@@ -1117,15 +1111,15 @@
       "Holy glasses + Gravity Boots + Thrust sword"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Holy glasses + Soul of Bat",
-      "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist",
-      "Holy glasses + Gravity Boots + Soul of Wolf",
-      "Holy glasses + Gravity Boots + Form of Mist",
-      "Holy glasses + Gravity Boots + Thrust sword"
+      "Holy glasses + Soul of Bat + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Leap Stone + Cube of Zoe",
+      "Holy glasses + Form of Mist + Power of Mist + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Soul of Wolf + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Form of Mist + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Thrust sword + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",

@@ -2,12 +2,17 @@
   "metadata": {
     "id": "chaos-lite",
     "name": "Chaos Lite",
-    "description": "Bounty Hunter, Aperture, and Grand Tour combined with additional random elements. App URL: https://github.com/MottZilla/BountyHunterTool",
+    "description": "Bounty Hunter and Aperture combined with the 'tourist' extension and additional random elements. Released on April 1st, 2024. App URL: https://github.com/MottZilla/BountyHunterTool",
     "author": "3snow_p7im, eldri7ch and MottZilla0",
     "weight": 10000
   },
   
   "colorrandoMode": true,
+  
+  "fastwarpMode": true,
+  "mypurseMode": true,
+  "unlockedMode": true,
+  
 
   "itemLocations": [{
     "comment": "Force library card spawn in vanilla location for convenience",
@@ -179,7 +184,6 @@
     "comment": "In second castle + Transformation + Spike Breaker",
     "locks": [
       "Soul of Bat + Spike Breaker",
-      "Gravity Boots + Leap Stone + Form of Mist + Spike Breaker",
       "Gravity Boots + Leap Stone + Soul of Wolf + Spike Breaker",
       "Form of Mist + Power of Mist"
     ]
@@ -344,7 +348,7 @@
     "comment": "Requires at least Gravity Boots",
     "locks": [
       "Soul of Bat",
-      "Gravity Boots",
+      "Gravity Boots + Leap Stone",
       "Form of Mist + Power of Mist"
     ]
   }, {
@@ -439,7 +443,7 @@
     "comment": "Requires flight",
     "locks": [
       "Soul of Bat",
-      "Gravity Boots + Leap Stone",
+      "Leap Stone",
       "Form of Mist + Power of Mist"
     ]
   }, {
@@ -677,8 +681,7 @@
     "comment": "Requires Holy glasses + flight",
     "locks": [
       "Soul of Bat",
-      "Gravity Boots + Leap Stone",
-      "Form of Mist + Power of Mist"
+      "Gravity Boots + Leap Stone"
     ]
   }, {
     "location": "Alucard shield",
@@ -812,12 +815,12 @@
       "Form of Mist + Power of Mist"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Soul of Bat",
-      "Gravity Boots + Leap Stone",
-      "Form of Mist + Power of Mist"
+      "Soul of Bat + Cube of Zoe",
+      "Gravity Boots + Leap Stone + Cube of Zoe",
+      "Form of Mist + Power of Mist + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",
@@ -7914,7 +7917,6 @@
     "comment": "Requires Wolf Swim up Waterfall",
     "locks": [
       "Soul of Wolf + Skill of Wolf + Holy Symbol",
-      "Leap Stone",
       "Gravity Boots + Form of Mist",
       "Gravity Boots + Soul of Wolf",
       "Gravity Boots + Thrust sword"
@@ -8271,12 +8273,12 @@
       "Gravity Boots + Thrust sword"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Gravity Boots + Form of Mist",
-      "Gravity Boots + Soul of Wolf",
-      "Gravity Boots + Thrust sword"
+      "Gravity Boots + Form of Mist + Cube of Zoe",
+      "Gravity Boots + Soul of Wolf + Cube of Zoe",
+      "Gravity Boots + Thrust sword + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",

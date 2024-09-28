@@ -8,6 +8,9 @@
   },
   
   "colorrandoMode": true,
+  "mypurseMode": true,
+  "fastwarpMode": true,
+  "unlockedMode": true,
 
   "itemLocations": [{
     "comment": "Force library card spawn in vanilla location for convenience",
@@ -179,7 +182,6 @@
     "comment": "In second castle + Transformation + Spike Breaker",
     "locks": [
       "Holy glasses + Soul of Bat + Spike Breaker",
-      "Holy glasses + Gravity Boots + Leap Stone + Form of Mist + Spike Breaker",
       "Holy glasses + Gravity Boots + Leap Stone + Soul of Wolf + Spike Breaker",
       "Holy glasses + Form of Mist + Power of Mist"
     ]
@@ -344,7 +346,7 @@
     "comment": "Requires at least Gravity Boots",
     "locks": [
       "Soul of Bat",
-      "Gravity Boots",
+      "Gravity Boots + Leap Stone",
       "Form of Mist + Power of Mist"
     ]
   }, {
@@ -439,7 +441,7 @@
     "comment": "Requires flight",
     "locks": [
       "Soul of Bat",
-      "Gravity Boots + Leap Stone",
+      "Leap Stone",
       "Form of Mist + Power of Mist"
     ]
   }, {
@@ -677,8 +679,7 @@
     "comment": "Requires Holy glasses + flight",
     "locks": [
       "Holy glasses + Soul of Bat",
-      "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist"
+      "Holy glasses + Gravity Boots + Leap Stone"
     ]
   }, {
     "location": "Alucard shield",
@@ -812,12 +813,12 @@
       "Holy glasses + Form of Mist + Power of Mist"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Holy glasses + Soul of Bat",
-      "Holy glasses + Gravity Boots + Leap Stone",
-      "Holy glasses + Form of Mist + Power of Mist"
+      "Holy glasses + Soul of Bat + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Leap Stone + Cube of Zoe",
+      "Holy glasses + Form of Mist + Power of Mist + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",
@@ -973,7 +974,7 @@
     "value": "0x30A50040"
   }, {
     "type": "word",
-    "value": "0x10A00008"
+    "value": "0x10A00009"
   }, {
     "type": "word",
     "value": "0x3C028007"
@@ -983,6 +984,9 @@
   }, {
     "type": "word",
     "value": "0x00000000"
+  }, {
+    "type": "word",
+    "value": "0x30420001"
   }, {
     "type": "word",
     "value": "0x10400004"
@@ -5872,7 +5876,6 @@
     "comment": "Requires Wolf Swim up Waterfall",
     "locks": [
       "Soul of Wolf + Skill of Wolf + Holy Symbol",
-      "Leap Stone",
       "Gravity Boots + Form of Mist",
       "Gravity Boots + Soul of Wolf",
       "Gravity Boots + Thrust sword"
@@ -6229,12 +6232,12 @@
       "Holy glasses + Gravity Boots + Thrust sword"
     ]
   }, {
-    "location": "Black Marble Gallery Vat",
-    "comment": "Requires Holy glasses + flight",
+    "location": "Reverse Alucart Sword",
+    "comment": "Requires Holy glasses + flight + Cube of Zoe",
     "locks": [
-      "Holy glasses + Gravity Boots + Form of Mist",
-      "Holy glasses + Gravity Boots + Soul of Wolf",
-      "Holy glasses + Gravity Boots + Thrust sword"
+      "Holy glasses + Gravity Boots + Form of Mist + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Soul of Wolf + Cube of Zoe",
+      "Holy glasses + Gravity Boots + Thrust sword + Cube of Zoe"
     ]
   }, {
     "location": "Black Marble Meal Ticket",
