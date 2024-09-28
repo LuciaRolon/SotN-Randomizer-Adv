@@ -86,7 +86,7 @@
     "locks": [
       "Soul of Bat",
       "Gravity Boots + Leap Stone + Form of Mist",
-      "Gravity Boots + Leap Stone",
+      "Gravity Boots + Leap Stone + Soul of Wolf",
       "Form of Mist + Power of Mist"
     ]
   }, {
@@ -5793,7 +5793,8 @@
     "location": "Platinum mail",
     "comment": "Requires at least Leap Stone",
     "locks": [
-      "Leap Stone"
+      "Leap Stone",
+      "Gravity Boots"
     ]
   }, {
     "location": "Falchion",
