@@ -859,6 +859,16 @@
     "value": "0xa062BE80",
     "comment": "sb v0, 0xBE80 (v1)"
   }, {
+    "comment": "Open Shortcut: Olrox's Quarters - Royal Chapel",
+    "type": "word",
+    "value": "0xa062BE4C",
+    "comment": "sb v0, 0xBE4C (v1)"
+  }, {
+    "comment": "Open Shortcut: Colosseum - Royal Chapel",
+    "type": "word",
+    "value": "0xa062BE9D",
+    "comment": "sb v0, 0xBE9D (v1)"
+  }, {
     "comment": "Turn on Outer Wall Elevator",
     "type": "word",
     "value": "0xa062BDFC",

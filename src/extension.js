@@ -879,12 +879,8 @@
   }, {
     name: LOCATION.REVERSE_ALUCART_SWORD,
     extension: EXTENSION.TOURIST,
-    entity: {
-      zones: [ ZONE.RNO0 ],
-      entities: [ 0x44d2, 0x5532 ],
-    },
-    replaceWithRelic: replaceReverseAlucartSwordWithRelic,
-    replaceWithItem: replaceReverseAlucartSwordWithItem
+    itemId: 157,
+    tileIndex: 1,
   }, {
     name: LOCATION.BLACK_MARBLE_MEAL_TICKET,
     extension: EXTENSION.TOURIST,
@@ -988,13 +984,9 @@
     },
   }, {
     name: LOCATION.REVERSE_ALUCART_SWORD,
-    extension: EXTENSION.TOURIST,
-    entity: {
-      zones: [ ZONE.RNO0 ],
-      entities: [ 0x44d2, 0x5532 ],
-    },
-    replaceWithRelic: replaceReverseAlucartSwordWithRelic,
-    replaceWithItem: replaceReverseAlucartSwordWithItem
+    extension: EXTENSION.WANDERER,
+    itemId: 157,
+    tileIndex: 1,
   }, {
     name: LOCATION.BLACK_MARBLE_MEAL_TICKET,
     extension: EXTENSION.WANDERER,

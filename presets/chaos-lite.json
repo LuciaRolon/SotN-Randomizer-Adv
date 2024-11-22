@@ -8,7 +8,7 @@
   },
   
   "colorrandoMode": true,
-  
+  "enemyStatRandoMode": true,
   "fastwarpMode": true,
   "mypurseMode": true,
   "unlockedMode": true,

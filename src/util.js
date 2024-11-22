@@ -6216,6 +6216,20 @@ function hexValueToDamageString(hexValue) {
     return data
   }
 
+  function applyShopPriceRandoPatches(rng) {
+    const shopItemsData = enemies.shopItemsData
+    const data = new checked()
+    // Patch the shop prices being randomized
+    let offset
+    let oldItemPrice
+    let newItemPrice
+    let newPriceHex
+      
+    
+
+    offset += 0x08
+  }
+
   function randomizeRelics(
     version,
     applied,
