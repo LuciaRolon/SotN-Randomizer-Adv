@@ -869,7 +869,7 @@
     }, {
       id: 18,
       itemName: "Meal ticket",
-      itemPriceH: 0x00007d0, //normally 2000
+      itemPriceH: 0x000007d0, //normally 2000
       itemPriceD: 2000,
       priceAddress: 0x047a3128
     }, {

@@ -4,7 +4,7 @@
     "name": "Cursed Night",
     "description": "A horrible night to have a curse.",
     "author": "Bob Sagget & Forat Negre",
-    "weight": -5008
+    "weight": -900
   },
 
   "inherits": "safe",
@@ -2605,7 +2605,7 @@
     "value": "0x04"
   }, {
     "comment": "Set Galamoth HP to 8000",
-    "address": "0x4365CD8",
+    "address": "0x0B7ADC",
     "type": "short",
     "value": "0x1F40"
   }, {
