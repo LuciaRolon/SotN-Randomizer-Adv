@@ -4,7 +4,7 @@
     "name": "Glitchmaster",
     "description": "Completely lacks logic using Glitch as the base. Wanderer relic extension.",
     "author": "romscout, DerDrach, eldri7ch, Mottzilla, Doozyzood",
-    "weight": -5007
+    "weight": -5006
   },
   
   "relicLocationsExtension": "wanderer",

@@ -4,7 +4,7 @@
     "name": "Cursed Night",
     "description": "A horrible night to have a curse.",
     "author": "Bob Sagget & Forat Negre",
-    "weight": -900
+    "weight": -5004
   },
 
   "inherits": "safe",

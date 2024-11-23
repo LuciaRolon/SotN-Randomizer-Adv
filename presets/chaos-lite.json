@@ -9,6 +9,7 @@
   
   "colorrandoMode": true,
   "enemyStatRandoMode": true,
+  "shopPriceRandoMode": true,
   "fastwarpMode": true,
   "mypurseMode": true,
   "unlockedMode": true,
