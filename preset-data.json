@@ -1,8 +1,17 @@
 [
   {
-    "name": "Sight-Seer",
-    "id": "sightseer",
-    "description": "A base preset for the Randomizer. Requires no speedrun or glitch knowledge for completion. Wanderer extension.",
-    "author": "3snow_p7im, eldri7ch"
+    "name": "Guarded O.G.",
+    "id": "guarded-og",
+    "description": "The best preset for trying out the SOTN Randomizer. Utilizes our 'guarded' relic locations but Gold ring, Silver ring, Holy glasses and Spike Breaker are in the same locations as the original game. You can find more details on the 'guarded' checks at https://symphonyrando.fun/locations",
+    "author": [
+      "TalicZealot"
+    ],
+    "knowledgeCheck": "None",
+    "timeFrame": "Fast",
+    "moddedLevel": "None",
+    "castleType": "Normal",
+    "transformEarly": "No",
+    "transformFocus": "None",
+    "winCondition": "Normal"
   }
 ]

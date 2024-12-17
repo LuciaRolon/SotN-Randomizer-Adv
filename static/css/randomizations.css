@@ -1,0 +1,43 @@
+#preset-details * {
+  margin: 0;
+  padding: 0.2;
+}
+
+#preset-details.hide {
+  display: none;
+}
+
+#preset-description,
+#preset-author,
+#preset-knowledgeCheck,
+#preset-moddedLevel,
+#preset-metaExtension,
+#preset-castleType,
+#preset-metaComplexity,
+#preset-transformEarly,
+#preset-itemStats,
+#preset-transformFocus,
+#preset-timeFrame,
+#preset-winCondition {
+  text-indent: 1rem;
+  font-size: 14px;
+}
+
+#preset-description,
+#preset-author,
+#preset-knowledgeCheck,
+#preset-moddedLevel,
+#preset-metaExtension,
+#preset-castleType,
+#preset-metaComplexity,
+#preset-transformEarly,
+#preset-itemStats,
+#preset-transformFocus,
+#preset-timeFrame,
+#preset-winCondition {
+  margin-bottom: 0.5rem;
+}
+
+#preset-author {
+  font-style: italic;
+}
